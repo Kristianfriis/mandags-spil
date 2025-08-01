@@ -1,0 +1,10 @@
+﻿@code {
+    [Parameter] public string? Title { get; set; } 
+    [Inject] public AppbarState? State { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (State is not null)
+            State.AppBarText = Title ?? string.Empty;
+    }
+}

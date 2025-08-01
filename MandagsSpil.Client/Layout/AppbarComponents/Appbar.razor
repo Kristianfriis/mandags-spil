@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Components.Sections
+@implements IDisposable
+@inject IJSRuntime JsRuntime;
+@inject AppbarState State
+
+<MudAppBar Elevation="1">
+    @if (State.BackButton)
+    {
+        <MudIconButton Icon="@Icons.Material.Filled.ArrowBack" Color="Color.Inherit" Edge="Edge.Start" OnClick="GoBack" />
+    }
+
+    @if (State.Hamburger)
+    {
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
+            OnClick="@((e) => DrawerToggle())" />
+    }
+
+    <MudSpacer />
+    
+    <MudText Typo="Typo.h5" Class="ml-3">@State.AppBarText</MudText>
+    <MudSpacer />
+
+    <SectionOutlet SectionName="@AppbarConstants.AppRightButtonSection" />
+
+    @* <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" /> *@
+</MudAppBar>
+
+@code {
+    [Parameter]
+    public bool DrawerOpen { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> DrawerOpenChanged { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (State is not null)
+        {
+            State.OnChange += StateHasChanged;
+        }
+    }
+
+    async Task DrawerToggle()
+    {
+        DrawerOpen = !DrawerOpen;
+        await DrawerOpenChanged.InvokeAsync(DrawerOpen);
+    }
+
+    public void Dispose()
+    {
+        if (State is not null)
+        {
+            State.OnChange += StateHasChanged;
+        }
+    }
+
+    async Task GoBack()
+    {
+        await JsRuntime.InvokeVoidAsync("history.back");
+    }
+}

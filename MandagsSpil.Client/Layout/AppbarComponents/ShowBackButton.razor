@@ -1,0 +1,23 @@
+﻿@implements IDisposable
+@inject AppbarState State
+
+@code {
+    protected override void OnInitialized()
+    {
+        if (State is not null)
+        {
+            State.BackButton = true;
+            State.Hamburger = false;
+        }
+    }
+    
+    public void Dispose()
+    {
+        if (State is not null)
+        {
+            State.BackButton = false;
+            State.Hamburger = true;
+        }
+    }
+
+}

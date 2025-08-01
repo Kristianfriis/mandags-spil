@@ -1,16 +1,27 @@
-﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
+﻿@using Microsoft.AspNetCore.Components.Sections
+@inherits LayoutComponentBase
+<main>
+    <MudLayout>
+       <Appbar @bind-DrawerOpen="_drawerOpen" />
+        <MudDrawer @bind-Open="_drawerOpen" Elevation="2" OverlayAutoClose="true" Variant="@DrawerVariant.Temporary">
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h5" Class="mt-1">Mandags Spil</MudText>
+            </MudDrawerHeader>
+            <MudNavMenu Rounded="true" Margin="Margin.Normal" Color="Color.Tertiary" Class="pa-2">
+                   <MudNavLink Href="/" 
+                            Match="NavLinkMatch.All" 
+                            Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+                   <MudNavLink Href="/weapon-select" 
+                            Match="NavLinkMatch.Prefix  " 
+                            Icon="@Icons.Material.Filled.Home">Weapon Select</MudNavLink>
+            </MudNavMenu>
+        </MudDrawer>
+        <MudMainContent>
             @Body
-        </article>
-    </main>
-</div>
+        </MudMainContent>
+    </MudLayout>
+</main>
+
+@code {
+    bool _drawerOpen = false;
+}

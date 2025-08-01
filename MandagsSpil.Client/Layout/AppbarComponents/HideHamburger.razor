@@ -1,0 +1,15 @@
+﻿@implements IDisposable
+@inject AppbarState State
+
+@code {    
+    protected override void OnInitialized()
+    {
+        State.Hamburger = false;
+    }
+    
+    public void Dispose()
+    {
+        State.Hamburger = true;
+    }
+
+}
