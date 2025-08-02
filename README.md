@@ -18,5 +18,5 @@ This repository contains the source code for the Mandags Spil project.
 - ❌ Call Of Duty 2 game history + leaderboard
 - ❌ Dirt 3 game history and leaderboard for the 3 game modes: Rally, RallyCross and Infected
 - ❌ Age Of Empires game history and leaderboard
-- ❌ Upload of game info by taking a picture of the final score and processing it through AI to extract
-- ❌ Users will be able to define their player tags for different games to automate score assignment from
+- ❌ Upload of game info by taking a picture of the final score and processing it through AI to extract data easily. 
+- ❌ Users will be able to define their player tags for different games to automate score assignment from games where they have assigned a user tag. 
