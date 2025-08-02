@@ -1,4 +1,4 @@
-﻿@page "/weapon-select"
+@page "/weapon-select"
 
 <HeaderTitle Title="Weapon Select" />
 <ShowBackButton />
@@ -17,58 +17,92 @@
     </MudText>
     <MudText Typo="Typo.body2">
         <button class="btn btn-primary" @onclick="chooseWeapon">Spawn</button>
-
-        <p role="status">Current weapon: @currentWeapon</p>
+        <p role="status">
+            Current weapon: @(currentWeapon is not null ? $"{currentWeapon.Number}. {currentWeapon.Name} ({currentWeapon.Nation})" : "Spawn")
+        </p>
     </MudText>
 </MudContainer>
 
-
-
-
-
 @code {
-
-    List<string> americanWeapons = new List<string> //List of all american weapons - KFR
+    // Weapon class representing a weapon with number, name, and nation
+    public class Weapon
     {
-        "1. Grease Gun", "2. M1A1", "3. M1 Garand",
-        "4. Springfield", "5. Trench Gun", "6. Thompson", "7. BAR"
+        public int Number { get; set; }
+        public string Name { get; set; }
+        public string Nation { get; set; }
+    }
+
+    // Weapon lists for each nation
+    List<Weapon> americanWeapons = new List<Weapon>
+    {
+        new Weapon { Number = 1, Name = "Grease Gun", Nation = "American" },
+        new Weapon { Number = 2, Name = "M1A1", Nation = "American" },
+        new Weapon { Number = 3, Name = "M1 Garand", Nation = "American" },
+        new Weapon { Number = 4, Name = "Springfield", Nation = "American" },
+        new Weapon { Number = 5, Name = "Trench Gun", Nation = "American" },
+        new Weapon { Number = 6, Name = "Thompson", Nation = "American" },
+        new Weapon { Number = 7, Name = "BAR", Nation = "American" }
+    };
+    List<Weapon> germanWeapons = new List<Weapon>
+    {
+        new Weapon { Number = 1, Name = "MP40", Nation = "German" },
+        new Weapon { Number = 2, Name = "Kar98k", Nation = "German" },
+        new Weapon { Number = 3, Name = "Gewehr 43", Nation = "German" },
+        new Weapon { Number = 4, Name = "FG42", Nation = "German" },
+        new Weapon { Number = 5, Name = "Scoped Kar98k", Nation = "German" },
+        new Weapon { Number = 6, Name = "Shotgun", Nation = "German" }
+        // Add more as needed
+    };
+    List<Weapon> britishWeapons = new List<Weapon>
+    {
+        new Weapon { Number = 1, Name = "Sten", Nation = "British" },
+        new Weapon { Number = 2, Name = "Lee-Enfield", Nation = "British" },
+        new Weapon { Number = 3, Name = "Bren", Nation = "British" },
+        new Weapon { Number = 4, Name = "Scoped Lee-Enfield", Nation = "British" },
+        new Weapon { Number = 5, Name = "Shotgun", Nation = "British" }
+        // Add more as needed
+    };
+    List<Weapon> russianWeapons = new List<Weapon>
+    {
+        new Weapon { Number = 1, Name = "PPSH-41", Nation = "Russian" },
+        new Weapon { Number = 2, Name = "Mosin-Nagant", Nation = "Russian" },
+        new Weapon { Number = 3, Name = "SVT-40", Nation = "Russian" },
+        new Weapon { Number = 4, Name = "Scoped Mosin-Nagant", Nation = "Russian" },
+        new Weapon { Number = 5, Name = "Shotgun", Nation = "Russian" }
+        // Add more as needed
     };
 
-    List<string> availableWeapons = new List<string>();  //Initialize list for weapon set - KFR
-    List<string> usedWeapons = new List<string>(); //Initialise list for use weapons - KFR
+    List<Weapon> availableWeapons = new();  // Weapons to select from
+    List<Weapon> usedWeapons = new();       // Used weapons
 
-    //Functions to choose nation - KFR
-    private void chooseAmerican()  
+    Random rng = new Random();
+
+    Weapon? currentWeapon = null;
+
+    // Nation selection
+    private void chooseAmerican() => ResetWeapons(americanWeapons);
+    private void chooseGerman() => ResetWeapons(germanWeapons);
+    private void chooseBritish() => ResetWeapons(britishWeapons);
+    private void chooseRussian() => ResetWeapons(russianWeapons);
+
+    private void ResetWeapons(List<Weapon> nationWeapons)
     {
-        availableWeapons = new List<string>(americanWeapons);
-    }
-    private void chooseGerman()
-    {
-        availableWeapons = new List<string>(americanWeapons);
-    }
-    private void chooseBritish()
-    {
-        availableWeapons = new List<string>(americanWeapons);
-    }
-    private void chooseRussian()
-    {
-        availableWeapons = new List<string>(americanWeapons);
+        availableWeapons = new List<Weapon>(nationWeapons);
+        usedWeapons.Clear();
+        currentWeapon = null;
     }
 
-    Random rng = new Random(); //Rand value for random weaponchoice - KFR
-
-    private string currentWeapon = "Spawn"; //String to present weapon choice - KFR
-
-    private void spawner()  //Function to select weapon - KFR
+    private void spawner()
     {
-        int weaponNumber = rng.Next(availableWeapons.Count);
-        currentWeapon = availableWeapons[weaponNumber];
+        if (availableWeapons.Count == 0) return;
+        int weaponIndex = rng.Next(availableWeapons.Count);
+        currentWeapon = availableWeapons[weaponIndex];
         usedWeapons.Add(currentWeapon);
-        availableWeapons.RemoveAt(weaponNumber);
+        availableWeapons.RemoveAt(weaponIndex);
     }
-    private void reload() //Function to move weapons from usedWeapons list to availableWeapons list - KFR
+
+    private void reload()
     {
-        Console.WriteLine("Reloading!");
         availableWeapons.AddRange(usedWeapons);
         usedWeapons.Clear();
     }
