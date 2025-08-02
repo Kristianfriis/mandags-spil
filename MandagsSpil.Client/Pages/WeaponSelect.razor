@@ -9,9 +9,80 @@
         This page is a placeholder for the Weapon select for cod2.
         It will be implemented in the future.
     </MudText>
+    <MudText Typo="Typo.body1">
+        <button class="btn btn-primary" @onclick="chooseAmerican">American</button>
+        <button class="btn btn-primary" @onclick="chooseGerman">German</button>
+        <button class="btn btn-primary" @onclick="chooseBritish">British</button>
+        <button class="btn btn-primary" @onclick="chooseRussian">Russian</button>
+    </MudText>
+    <MudText Typo="Typo.body2">
+        <button class="btn btn-primary" @onclick="chooseWeapon">Spawn</button>
+
+        <p role="status">Current weapon: @currentWeapon</p>
+    </MudText>
 </MudContainer>
 
 
+
+
+
 @code {
-  
+
+    List<string> americanWeapons = new List<string> //List of all american weapons - KFR
+    {
+        "1. Grease Gun", "2. M1A1", "3. M1 Garand",
+        "4. Springfield", "5. Trench Gun", "6. Thompson", "7. BAR"
+    };
+
+    List<string> availableWeapons = new List<string>();  //Initialize list for weapon set - KFR
+    List<string> usedWeapons = new List<string>(); //Initialise list for use weapons - KFR
+
+    //Functions to choose nation - KFR
+    private void chooseAmerican()  
+    {
+        availableWeapons = new List<string>(americanWeapons);
+    }
+    private void chooseGerman()
+    {
+        availableWeapons = new List<string>(americanWeapons);
+    }
+    private void chooseBritish()
+    {
+        availableWeapons = new List<string>(americanWeapons);
+    }
+    private void chooseRussian()
+    {
+        availableWeapons = new List<string>(americanWeapons);
+    }
+
+    Random rng = new Random(); //Rand value for random weaponchoice - KFR
+
+    private string currentWeapon = "Spawn"; //String to present weapon choice - KFR
+
+    private void spawner()  //Function to select weapon - KFR
+    {
+        int weaponNumber = rng.Next(availableWeapons.Count);
+        currentWeapon = availableWeapons[weaponNumber];
+        usedWeapons.Add(currentWeapon);
+        availableWeapons.RemoveAt(weaponNumber);
+    }
+    private void reload() //Function to move weapons from usedWeapons list to availableWeapons list - KFR
+    {
+        Console.WriteLine("Reloading!");
+        availableWeapons.AddRange(usedWeapons);
+        usedWeapons.Clear();
+    }
+
+    private void chooseWeapon()
+    {
+        if (availableWeapons.Count > 0)
+        {
+            spawner();
+        }
+        else
+        {
+            reload();
+            spawner();
+        }
+    }
 }
