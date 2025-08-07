@@ -17,6 +17,8 @@
     </MudText>
     <MudText Typo="Typo.body2">
         <button class="btn btn-primary" @onclick="chooseWeapon">Spawn</button>
+    </MudText>
+    <MudText Typo="Typo.h4">
         <p role="status">
             Current weapon: @(currentWeapon is not null ? $"{currentWeapon.Number}. {currentWeapon.Name} ({currentWeapon.Nation})" : "Spawn")
         </p>
