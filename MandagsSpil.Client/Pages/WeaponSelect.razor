@@ -15,7 +15,7 @@
         <button class="btn btn-primary" @onclick="chooseBritish">British</button>
         <button class="btn btn-primary" @onclick="chooseRussian">Russian</button>
     </MudText>
-    <MudText Typo="Typo.body2">
+    <MudText Typo="Typo.h4">
         <button class="btn btn-primary" @onclick="chooseWeapon">Spawn</button>
     </MudText>
     <MudText Typo="Typo.h4">
@@ -50,8 +50,8 @@
         new Weapon { Number = 1, Name = "MP40", Nation = "German" },
         new Weapon { Number = 2, Name = "Kar98k", Nation = "German" },
         new Weapon { Number = 3, Name = "Gewehr 43", Nation = "German" },
-        new Weapon { Number = 4, Name = "FG42", Nation = "German" },
-        new Weapon { Number = 5, Name = "Scoped Kar98k", Nation = "German" },
+        new Weapon { Number = 4, Name = "Scoped Kar98k", Nation = "German" },
+        new Weapon { Number = 5, Name = "MG44", Nation = "German" },
         new Weapon { Number = 6, Name = "Shotgun", Nation = "German" }
         // Add more as needed
     };
@@ -59,9 +59,11 @@
     {
         new Weapon { Number = 1, Name = "Sten", Nation = "British" },
         new Weapon { Number = 2, Name = "Lee-Enfield", Nation = "British" },
-        new Weapon { Number = 3, Name = "Bren", Nation = "British" },
+        new Weapon { Number = 3, Name = "M1 Garand", Nation = "British" },
         new Weapon { Number = 4, Name = "Scoped Lee-Enfield", Nation = "British" },
-        new Weapon { Number = 5, Name = "Shotgun", Nation = "British" }
+        new Weapon { Number = 5, Name = "Shotgun", Nation = "British" },
+        new Weapon { Number = 6, Name = "Thompson", Nation = "British" },
+        new Weapon { Number = 7, Name = "Bren", Nation = "British" }
         // Add more as needed
     };
     List<Weapon> russianWeapons = new List<Weapon>
@@ -70,7 +72,8 @@
         new Weapon { Number = 2, Name = "Mosin-Nagant", Nation = "Russian" },
         new Weapon { Number = 3, Name = "SVT-40", Nation = "Russian" },
         new Weapon { Number = 4, Name = "Scoped Mosin-Nagant", Nation = "Russian" },
-        new Weapon { Number = 5, Name = "Shotgun", Nation = "Russian" }
+        new Weapon { Number = 5, Name = "Shotgun", Nation = "Russian" },
+        new Weapon { Number = 6, Name = "PPS-42", Nation = "Russian"}
         // Add more as needed
     };
 
