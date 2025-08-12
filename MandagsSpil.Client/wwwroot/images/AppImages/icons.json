@@ -1,14 +1,4 @@
 {
-  "name": "MandagsSpil",
-  "short_name": "MandagsSpil",
-  "description": "A simple app to play games with friends on Mondays.",
-  "id": "./",
-  "start_url": "./",
-  "display": "standalone",
-  "display_override": [ "window-controls-overlay", "standalone", "fullscreen" ],
-  "background_color": "#ffffff",
-  "theme_color": "#594ae2",
-  "prefer_related_applications": false,
   "icons": [
     {
       "src" : "images/AppImages/windows11/SmallTile.scale-100.png",
