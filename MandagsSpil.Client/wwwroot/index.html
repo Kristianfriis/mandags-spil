@@ -4,18 +4,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MandagsSpil.Client</title>
+    <title>MandagsSpil</title>
     <base href="/" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/png" href="images\AppImages\android\android-launchericon-48-48.png" />
     <link href="MandagsSpil.Client.styles.css" rel="stylesheet" />
     <link href="manifest.webmanifest" rel="manifest" />
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
-    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="images\AppImages\ios\512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="images\AppImages\ios\192.png" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- Important: Increment the version parameter whenever you update MudBlazor to prevent caching issues -->
     <link href="_content/MudBlazor/MudBlazor.min.css?v=1" rel="stylesheet" />
+    <meta name="theme-color" content="rgba(89,74,226,1)" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#27272f" media="(prefers-color-scheme: dark)" />
 </head>
 
 <body>
@@ -32,6 +35,7 @@
         <a href="." class="reload">Reload</a>
         <span class="dismiss">🗙</span>
     </div>
+    <script src="script.js"></script>
     <!-- Important: Increment the version parameter whenever you update MudBlazor to prevent caching issues -->
     <script src="_content/MudBlazor/MudBlazor.min.js?v=1"></script>
     <script src="_framework/blazor.webassembly.js"></script>
